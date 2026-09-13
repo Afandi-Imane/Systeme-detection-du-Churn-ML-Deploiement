@@ -2,6 +2,12 @@
 .git
 __pycache__
 *.pyc
+
 data/raw
 notebooks
 .gradio
+
+mlruns
+mlflow.db
+mlflow.db.old
+artifacts

@@ -20,10 +20,9 @@ COPY . .
 
 # 6. Variables d'environnement
 ENV PYTHONUNBUFFERED=1 \
-    PYTHONPATH=/app \
-    PROJECT_ROOT=/app \
-    MODEL_PATH=/app/mlruns/1/models/m-d3e8aa3fdeab4b28b1c9169947c450da/artifacts \
-    FEATURE_COLUMNS_PATH=/app/mlruns/1/3073ba1fafa24675829043358727e583/artifacts/feature_columns.txt
+PYTHONPATH=/app \
+MODEL_PATH=/app/src/serving/model \
+FEATURE_COLUMNS_PATH=/app/src/serving/model/feature_columns.txt
 
 # 7. Exposer le port FastAPI
 EXPOSE 8000

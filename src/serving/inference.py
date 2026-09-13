@@ -30,16 +30,10 @@ import mlflow
 
 project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), "../.."))
 # ✅ Après — fonctionne partout (local + Docker)
-project_root = os.environ.get("PROJECT_ROOT",os.path.abspath(os.path.join(os.path.dirname(__file__), "../..")))
-mlflow.set_tracking_uri(f"sqlite:///{project_root}/mlflow.db")
-# === MODEL LOADING CONFIGURATION ===
-# IMPORTANT: This path is set during Docker container build
-# In development: uses local MLflow artifacts
-# In production: uses model copied to container at build time
-# MODEL_DIR = "runs:/<run_id>/model"
-RUN_ID = "3073ba1fafa24675829043358727e583"
-
-MODEL_DIR = os.environ.get("MODEL_PATH", f"runs:/{RUN_ID}/model")
+MODEL_DIR = os.environ.get(
+    "MODEL_PATH",
+    os.path.join(os.path.dirname(__file__), "model")
+)
 try:
     # Load the trained XGBoost model in MLflow pyfunc format
     # This ensures compatibility regardless of the underlying ML library
@@ -52,8 +46,7 @@ except Exception as e:
     # Fallback for local development (OPTIONAL)
     try:
         # Try loading from local MLflow tracking
-        import glob
-        local_model_paths = glob.glob("./mlruns/*/*/artifacts/model")
+        
         if local_model_paths:
             latest_model = max(local_model_paths, key=os.path.getmtime)
             model = mlflow.pyfunc.load_model(latest_model)
@@ -68,12 +61,14 @@ except Exception as e:
 # CRITICAL: Load the exact feature column order used during training
 # This ensures the model receives features in the expected order
 try:
-    feature_path = os.environ.get("FEATURE_COLUMNS_PATH")
-    if not feature_path:
-        feature_path = mlflow.artifacts.download_artifacts(
-            run_id=RUN_ID,
-            artifact_path="feature_columns.txt"
+    feature_path = os.environ.get(
+        "FEATURE_COLUMNS_PATH",
+        os.path.join(
+            os.path.dirname(__file__),
+            "model",
+            "feature_columns.txt"
         )
+    )
 
     with open(feature_path, "r") as f:
         FEATURE_COLS = [line.strip() for line in f if line.strip()]
