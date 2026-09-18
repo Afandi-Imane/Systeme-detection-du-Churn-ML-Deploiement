@@ -311,11 +311,7 @@ Ce projet illustre une chaîne de production complète en MLOps :
 
 Il s’agit d’un projet réaliste et complet, orienté vers les pratiques de développement et de mise en production de modèles d’intelligence artificielle.
 
----
 
-## Author
-
-Projet développé dans le cadre d’une démonstration MLOps / machine learning en production.
 
 ### Lancer le conteneur
 
@@ -338,29 +334,11 @@ Ce projet illustre une vraie chaîne de valeur MLOps :
 
 C’est une bonne démonstration d’un projet de data science appliquée au monde réel avec une logique de production.
 
----
 
-## 13. Captures d’écran à ajouter
-
-### Capture 1 : MLflow UI
-Ajoutez ici une capture de l’interface MLflow avec les runs et les métriques.
-
-### Capture 2 : Swagger /docs
-Ajoutez ici une capture de la documentation FastAPI et du point d’entrée `/predict`.
-
-### Capture 3 : Résultat du modèle
-Ajoutez ici une capture du rapport de classification ou des métriques obtenues.
-
----
-
-## 14. Conclusion
+## 13. Conclusion
 
 Ce projet démontre la capacité à concevoir et livrer un système de machine learning complet, de l’entraînement à la mise en production, en mettant l’accent sur la qualité des données, la reproductibilité et le déploiement.
 
 Il correspond à un projet réaliste d’industrialisation de modèles en environnement MLOps.
 
----
 
-## 15. Auteur
-
-Projet développé dans le cadre d’un portfolio / démonstration MLOps.
